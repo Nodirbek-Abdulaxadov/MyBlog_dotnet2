@@ -1,32 +1,30 @@
-﻿<!--Main body-->
+﻿@model Post
+
+<!--Main body-->
     <main class="container  mt-3">
-        <a href="index.html" class="btn btn-secondary back"><i class="las la-arrow-left"></i> Back to home</a>
+        <a asp-controller="home" asp-action="index" class="btn btn-secondary back"><i class="las la-arrow-left"></i> Back to home</a>
         <hr />
 
         <div class="post-view">
             <div class="card mb-3" style="max-width: 940px;">
                 <div class="row g-0">
                     <div class="col-md-4 p-4">
-                        <img src="~/Images/photo_2021-11-27_00-43-32.jpg" class="card-img-top" alt="logo" />
+                        @{
+                            string imageFilePath = "~/Images/" + @Model.ImagePath;
+                            string postBody = @Model.Body;
+                        }   
+                        <img src="@imageFilePath" asp-append-version="true" class="card-img-top" alt="logo" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body m-3">
-                            <h5 class="card-title">First Post</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam
-                                molestiae culpa exercitationem earum quia voluptas, quod autem deserunt vitae ab. Quas
-                                harum laudantium quibusdam aut aliquam hic enim fuga iure? Libero, sequi dolores.
-                                Delectus qui inventore saepe omnis, est molestiae dicta ut sequi, cupiditate similique
-                                aliquid quisquam vero voluptates rerum enim ratione, libero quod! Corporis eaque
-                                similique itaque, iure expedita harum quisquam, veritatis nisi incidunt perferendis
-                                magni blanditiis inventore ad minima accusantium beatae fugit illo delectus placeat
-                                provident maxime ipsam ex. Neque natus molestiae maiores numquam ad, obcaecati odit
-                                eligendi nobis. Officiis unde repellat soluta, rerum tempora nulla. Quas, dolorem!</p>
+                            <h5 class="card-title">@Model.Title</h5>
+                            <p class="card-text">@Model.Body</p>
 
                             <div>
-                                <small class="text-muted">25.11.2021 11.11 PM</small>
+                                <small class="text-muted">@Model.CreatedTime</small>
                                 <div class="la-group">
-                                    <a href="edit-blog.html" class="btn btn-primary mx-2"><i class="las la-edit"></i>Edit</a>
-                                    <a href=""  onclick="return confirm('Are you sure delete this post?');"  class="btn btn-danger mx-2"><i class="las la-trash"></i>Delete</a>
+                                    <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary mx-2"><i class="las la-edit"></i>Edit</a>
+                                    <a asp-controller="home" asp-action="delete" asp-route-id="@Model.Id"  onclick="return confirm('Are you sure delete this post?');"  class="btn btn-danger mx-2"><i class="las la-trash"></i>Delete</a>
                                 </div>
                             </div>
 

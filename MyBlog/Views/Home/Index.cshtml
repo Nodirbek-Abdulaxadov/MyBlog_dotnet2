@@ -28,8 +28,7 @@
                         <h5 class="card-title">@post.Title</h5>
                         <p class="card-text"><small class="text-muted">@post.CreatedTime</small></p>
                         <p class="card-text">@postBody</p>
-                        <a href="blog-detail.html" class="btn btn-primary"><i class="las la-angle-double-right"></i>Read
-                            More</a>
+                        <a asp-controller="home" asp-action="detail" asp-route-id="@post.Id" class="btn btn-primary"><i class="las la-angle-double-right"></i>Read More</a>
                     </div>
                </div>
            }
